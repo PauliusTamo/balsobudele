@@ -1,7 +1,7 @@
 import { type FormEvent, useState } from 'react';
 import { Route, Router as WouterRouter, Switch } from 'wouter';
 import NotFound from '@/pages/not-found';
-import { Mic2, Phone, Volume2 } from 'lucide-react';
+import { Mic2 } from 'lucide-react';
 import conceptPhoto from '@assets/koncepcija_1788350849629.jpg';
 
 function getSourceFromUrl() {
@@ -130,7 +130,7 @@ function Home() {
           <img
             src={conceptPhoto}
             alt="Balso Būdelės konceptualus vaizdas"
-            className="hero-backdrop absolute inset-0 -z-20 h-full w-full object-cover"
+            className="hero-backdrop absolute inset-0 -z-20 h-full w-full object-cover object-[35%_center] sm:object-center"
             data-testid="img-concept-placeholder"
           />
           <div className="hero-overlay absolute inset-0 -z-10" aria-hidden="true" />
@@ -147,15 +147,7 @@ function Home() {
 
           <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 items-end px-6 pb-10 pt-16 sm:items-center sm:px-10 sm:pb-20 lg:px-16 lg:pb-24">
             <div className="max-w-4xl">
-              <div className="page-reveal mb-7 flex items-center gap-3 text-[#F8F3EA]" aria-hidden="true">
-                <span className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#F8F3EA]/75">
-                  <Phone size={15} strokeWidth={1.25} />
-                  <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-[#B08D57]" />
-                </span>
-                <span className="h-px w-14 bg-[#B08D57]" />
-                <Volume2 size={16} strokeWidth={1.25} />
-              </div>
-              <h1 id="hero-headline" className="page-reveal max-w-4xl font-serif text-[clamp(3.25rem,9vw,7.4rem)] leading-[0.96] tracking-[-0.055em] text-[#F8F3EA]">
+              <h1 id="hero-headline" className="page-reveal max-w-[12ch] font-serif text-[clamp(3.25rem,9vw,7.4rem)] leading-[0.96] tracking-[-0.055em] text-[#F8F3EA]">
                 Vieta, kur balsas tampa prisiminimu
               </h1>
               <p className="page-reveal page-reveal-delay-1 mt-7 max-w-2xl text-lg leading-[1.5] text-[#F8F3EA]/85 sm:text-xl">

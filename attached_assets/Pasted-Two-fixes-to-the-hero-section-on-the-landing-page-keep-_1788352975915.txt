@@ -1,0 +1,26 @@
+Two fixes to the hero section on the landing page, keep everything else (design tokens, fonts, form, "Kas tai?" section, footer) unchanged:
+
+1. Fix the headline overlapping the busiest part of the booth photo
+
+Right now the headline text ("Vieta, kur balsas tampa prisiminimu") crosses directly over the vintage clock and floral garland in the photo — the most visually detailed part of the image — which makes the hero read as cluttered.
+
+Fix this one of these two ways (pick whichever looks cleaner once built):
+
+Option A: Extend/strengthen the dark gradient overlay so it covers the full left-to-center area where the text sits, giving the whole headline a clean, consistently dark base to sit on regardless of what's behind it in the photo.
+Option B: Narrow the text column and/or shift it left so the headline no longer overlaps the booth itself — keep the booth (clock, garland, flowers) visible and uncluttered on the right side of the frame, with type fully over the plainer wall/background area on the left.
+
+Whichever approach is used, re-check contrast — the serif headline and subheadline need to stay clearly legible against the photo at every point they cross it.
+
+2. Remove the icon row above the headline
+
+There's currently a small row above the headline: a phone/call icon, a dashed horizontal line, and a speaker icon. It doesn't explain anything to a first-time visitor and isn't tied to any copy. Remove it entirely — don't replace it with anything, just let the headline be the first thing after the wordmark.
+
+3. Test the hero specifically at mobile widths
+
+Since most traffic to this page will be on mobile, check the hero at common mobile viewport widths (e.g. ~375px, ~390px) specifically for:
+
+The headline not wrapping into the booth's busiest visual area
+The email input and button staying fully visible without needing to scroll, alongside the wordmark, headline, and subheadline
+The photo not being cropped in a way that hides the booth or looks awkward
+
+Adjust font sizes/spacing for mobile as needed to keep all of this working within one viewport, without scroll, at those widths.
