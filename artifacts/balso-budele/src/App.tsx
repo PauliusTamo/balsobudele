@@ -134,7 +134,7 @@ function Home() {
             data-testid="img-concept-placeholder"
           />
           <div className="hero-overlay absolute inset-0 -z-10" aria-hidden="true" />
-          <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-7 sm:px-10 sm:py-9 lg:px-16" data-testid="site-header">
+          <header className="flex w-full items-center justify-between px-6 py-7 sm:px-10 sm:py-9 lg:px-16" data-testid="site-header">
             <a
               href="#pradzia"
               className="font-serif text-xl tracking-[-0.02em] text-[#F8F3EA] transition-colors hover:text-[#B08D57]"
