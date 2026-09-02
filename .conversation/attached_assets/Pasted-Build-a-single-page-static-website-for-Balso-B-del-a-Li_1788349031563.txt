@@ -1,0 +1,65 @@
+Build a single-page static website for "Balso Būdelė" — a Lithuanian wedding concept: an elegant, full-size phone booth rented out at weddings where guests leave a voice message for the couple, isolated from background noise so the recording is clean.
+
+This page has ONE job: test demand. It is not a sales page, has no pricing, no launch date, and makes no claims about production status — the company is still deciding whether to build this. The only goal is to get visitors to leave their email so we know if there's real interest.
+
+Tech stack
+
+Plain HTML/CSS/JS, single page, no framework needed. Fully static except the email form. For the email form, use Formspree (<form action="https://formspree.io/f/YOUR_ID" method="POST">) — I'll swap in the real endpoint after signing up. Don't build a custom backend or database for this.
+
+Add a minimal, free visit counter (e.g. a simple Plausible/Simple Analytics script tag, or a lightweight self-contained counter) so I can compare visits vs. email signups later. Keep this invisible to the visitor — no visible counter on the page itself.
+
+Fully responsive down to mobile. Visible keyboard focus states. Respect reduced-motion preference.
+
+Design direction
+
+Audience: Lithuanian wedding couples and wedding agencies. Tone: elegant, warm, understated — not corporate, not "startup SaaS," not loud. Avoid generic AI-page defaults: no cream-background+terracotta-accent combo, no dark-mode-with-neon-accent, no rounded SaaS cards with soft grey shadows, no tracked-out ALL-CAPS eyebrow labels, no em-dash "WORD — fragment" labels, no arrow (→) tacked onto buttons.
+
+Color tokens:
+
+Background (base): warm ivory/parchment 
+#F8F3EA
+Secondary panel: soft blush-cream 
+#EFE6D8
+Accent (primary — buttons, dividers, small details): antique brass/gold 
+#B08D57
+Text (dark): warm near-black charcoal 
+#2B2620 (not pure black)
+Muted text: 
+#6B6357
+
+Typography:
+
+Display/headline: an elegant serif (e.g. Cormorant Garamond or Playfair Display)
+Body: a clean, simple sans (e.g. Inter or Work Sans)
+Line length under ~80 characters for body text, generous line-height on the serif headline
+No single-word accenting inside headlines (no italicizing/coloring one word)
+
+Layout: single column, centered, generous whitespace, no card grids. Let the concept photo carry the hero — text stays minimal around it. One deliberate visual moment (the hero image), everything else quiet and disciplined.
+
+Page structure & exact copy (Lithuanian)
+
+1. Header Small wordmark, top left or centered: Balso Būdelė
+
+2. Hero Large concept photo of the booth (use an image placeholder with alt text "Balso Būdelės konceptualus vaizdas" — I'll upload the real photo after).
+
+Headline: Vieta, kur balsas tampa prisiminimu
+
+Subheadline: Nauja koncepcija vestuvėms – elegantiška telefono būdelė, kurioje svečiai palieka balso žinutę jaunavedžiams.
+
+3. "Kas tai?" section — three short lines, no numbering (this isn't a sequence):
+
+Pilno dydžio, elegantiška telefono būdelė, pritaikyta vestuvių estetikai.
+Izoliuota nuo aplinkos triukšmo – balsas skamba aiškiai ir švariai.
+Veikia ir kaip išskirtinis dekoro elementas pačioje šventėje.
+
+4. Email capture section (the actual point of the page): Headline: Norite sužinoti pirmieji? Body: Šiuo metu tikriname susidomėjimą ir renkame nuomonę, prieš nuspręsdami dėl gamybos. Palikite el. paštą – pranešime, kai turėsime daugiau naujienų. Form: single email input + button labeled Pranešti man After submit, replace the form with: Ačiū! Pranešime, kai turėsime naujienų.
+
+5. Footer Just: Balso Būdelė · info@balsobudele.lt — nothing else. No fake social links, no fake testimonials, no fake logos.
+
+Explicitly do NOT include
+No pricing or "starting from €X"
+No launch date or "coming this year"
+No fake testimonials, review stars, or "as seen in" logos
+No numbered step markers (01/02/03) — nothing here is a sequence
+No countdown timers or fake urgency
+No multi-page navigation — this is one scrollable page only

@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Balso Būdelė"
+description = "A warm, elegant demand-testing landing page for a Lithuanian wedding voice-message booth concept, focused on collecting early interest by email."
+version = "1.0.0"
+id = "artifacts/balso-budele"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23280
+
+[services.development]
+run = "pnpm --filter @workspace/balso-budele run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/balso-budele", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/balso-budele/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23280"
+BASE_PATH = "/"
