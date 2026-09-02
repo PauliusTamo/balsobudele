@@ -2,6 +2,7 @@ import { type FormEvent, useState } from 'react';
 import { Route, Router as WouterRouter, Switch } from 'wouter';
 import NotFound from '@/pages/not-found';
 import { Mic2, Phone, Volume2 } from 'lucide-react';
+import conceptPhoto from '@assets/koncepcija_1788350849629.jpg';
 
 function getSourceFromUrl() {
   if (typeof window === 'undefined') {
@@ -127,7 +128,7 @@ function Home() {
       <main className="min-h-[100dvh] overflow-hidden bg-[#F8F3EA] text-[#2B2620]">
         <section id="pradzia" className="hero-shell relative isolate flex min-h-[100svh] flex-col overflow-hidden" aria-labelledby="hero-headline" data-testid="section-hero">
           <img
-            src="/concept-placeholder.svg"
+            src={conceptPhoto}
             alt="Balso Būdelės konceptualus vaizdas"
             className="hero-backdrop absolute inset-0 -z-20 h-full w-full object-cover"
             data-testid="img-concept-placeholder"
