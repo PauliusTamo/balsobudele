@@ -1,14 +1,14 @@
 import path from "path";
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import app from "./app";
 import { logger } from "./lib/logger";
 
-// Serve static frontend files built in public directory
+// Serve static frontend files from public directory if present
 const publicPath = path.join(process.cwd(), "public");
 app.use(express.static(publicPath));
 
-// Fallback to index.html for frontend routing, or send static file
-app.get("*", (req, res, next) => {
+// Fallback route for static files or API status
+app.get("*", (req: Request, res: Response, next: NextFunction) => {
   if (req.path.startsWith("/api")) {
     return next();
   }
@@ -29,7 +29,7 @@ if (Number.isNaN(port) || port <= 0) {
   throw new Error(`Invalid PORT value: "${rawPort}"`);
 }
 
-app.listen(port, "0.0.0.0", (err) => {
+app.listen(port, "0.0.0.0", (err?: Error) => {
   if (err) {
     logger.error({ err }, "Error listening on port");
     process.exit(1);
