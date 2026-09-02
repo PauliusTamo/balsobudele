@@ -1,0 +1,29 @@
+Make these changes to the existing landing page:
+
+1. Restructure the hero so the email signup is visible without scrolling
+
+Right now the hero (wordmark, headline, subheadline) and the email form are in two separate sections, with the booth photo and "Kas tai?" content in between. Combine them into a single hero that fits in one viewport (mobile and desktop) with no scroll required to act:
+
+Booth photo as a full-bleed backdrop behind the hero content (not a separate image block further down the page). Add a subtle dark gradient/overlay on the lower portion of the photo so the text and form stay legible on top of it — don't lose the photo's warmth, just enough overlay for contrast.
+Keep the wordmark ("Balso Būdelė") top.
+Keep the headline ("Vieta, kur balsas tampa prisiminimu") and the subheadline sentence — the subheadline stays, it's the only sentence explaining what this actually is, don't cut it.
+Move the email input + "Pranešti man" button up into this same hero block, directly below the subheadline.
+Remove the small "↓ Kas tai?" scroll hint from the hero — it's no longer needed once the form is already visible.
+2. Keep "Kas tai?" and the second signup section below the fold
+
+Leave the existing "Kas tai?" section (the three lines) below the hero as-is, along with the second "Norite sužinoti pirmieji?" heading and form — this becomes a secondary/reinforcement CTA for people who scrolled down for more detail before deciding, not the only place to sign up. Don't remove it.
+
+3. Add source tracking to the email form
+
+I'll be sharing this link across different channels (Facebook groups, Reddit, later paid ads) and need to know which one each signup came from.
+
+On page load, read a query parameter from the URL (e.g. ?src=fb_group_x, ?src=reddit, ?src=paid_fb).
+Store it and include it as a hidden field (e.g. source) in both Formspree form submissions on the page (hero form and the lower form), so it shows up alongside each email in the Formspree dashboard.
+If no src param is present, submit the hidden field as direct rather than leaving it blank.
+4. Leave the current booth image as a placeholder
+
+Don't touch the current placeholder graphic — I'll swap in the real photo separately.
+
+Keep unchanged
+
+Color tokens, fonts, the poetic headline, the "Kas tai?" copy, the footer, and the overall restrained visual style — this is a restructure, not a redesign.

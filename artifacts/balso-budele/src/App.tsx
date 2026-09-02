@@ -1,13 +1,29 @@
 import { type FormEvent, useState } from 'react';
 import { Route, Router as WouterRouter, Switch } from 'wouter';
 import NotFound from '@/pages/not-found';
-import { Mic2, MoveDown, Phone, Volume2 } from 'lucide-react';
+import { Mic2, Phone, Volume2 } from 'lucide-react';
 
-function InterestForm() {
+function getSourceFromUrl() {
+  if (typeof window === 'undefined') {
+    return 'direct';
+  }
+
+  const source = new URLSearchParams(window.location.search).get('src')?.trim();
+  return source || 'direct';
+}
+
+function InterestForm({
+  source,
+  variant = 'default',
+}: {
+  source: string;
+  variant?: 'default' | 'hero';
+}) {
   const [email, setEmail] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [hasSent, setHasSent] = useState(false);
   const [error, setError] = useState('');
+  const isHero = variant === 'hero';
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -37,7 +53,7 @@ function InterestForm() {
   if (hasSent) {
     return (
       <p
-        className="max-w-md border-l border-[#B08D57] py-3 pl-5 font-serif text-2xl leading-tight text-[#2B2620] page-reveal"
+        className={`max-w-md border-l border-[#B08D57] py-3 pl-5 font-serif text-2xl leading-tight page-reveal ${isHero ? 'text-[#F8F3EA]' : 'text-[#2B2620]'}`}
         role="status"
         data-testid="status-signup-success"
       >
@@ -56,11 +72,12 @@ function InterestForm() {
     >
       <label
         htmlFor="email"
-        className="mb-3 block text-xs font-medium tracking-[0.14em] text-[#6B6357]"
+        className={`mb-3 block text-xs font-medium tracking-[0.14em] ${isHero ? 'text-[#F8F3EA]/80' : 'text-[#6B6357]'}`}
         data-testid="label-email"
       >
         El. paštas
       </label>
+      <input type="hidden" name="source" value={source} data-testid="input-source" />
       <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch">
         <input
           id="email"
@@ -71,13 +88,13 @@ function InterestForm() {
           placeholder="jusu@pastas.lt"
           required
           aria-describedby={error ? 'signup-error' : undefined}
-          className="min-h-14 flex-1 border border-[#C9BCA8] bg-[#F8F3EA] px-4 text-base text-[#2B2620] placeholder:text-[#968C7F] transition-colors hover:border-[#B08D57] focus:border-[#B08D57] focus:outline-none"
+          className={`min-h-14 flex-1 border px-4 text-base transition-colors focus:outline-none ${isHero ? 'border-[#F8F3EA]/55 bg-[#2B2620]/25 text-[#F8F3EA] placeholder:text-[#F8F3EA]/65 hover:border-[#F8F3EA] focus:border-[#F8F3EA]' : 'border-[#C9BCA8] bg-[#F8F3EA] text-[#2B2620] placeholder:text-[#968C7F] hover:border-[#B08D57] focus:border-[#B08D57]'}`}
           data-testid="input-email"
         />
         <button
           type="submit"
           disabled={isSending}
-          className="min-h-14 border border-[#2B2620] bg-[#2B2620] px-6 text-sm font-medium text-[#F8F3EA] transition-colors hover:border-[#B08D57] hover:bg-[#B08D57] disabled:cursor-wait disabled:opacity-60"
+          className={`min-h-14 border px-6 text-sm font-medium transition-colors disabled:cursor-wait disabled:opacity-60 ${isHero ? 'border-[#B08D57] bg-[#B08D57] text-[#2B2620] hover:border-[#F8F3EA] hover:bg-[#F8F3EA]' : 'border-[#2B2620] bg-[#2B2620] text-[#F8F3EA] hover:border-[#B08D57] hover:bg-[#B08D57]'}`}
           data-testid="button-submit-interest"
         >
           {isSending ? 'Siunčiama' : 'Pranešti man'}
@@ -86,7 +103,7 @@ function InterestForm() {
       {error ? (
         <p
           id="signup-error"
-          className="mt-3 text-sm text-[#8C4138]"
+          className={`mt-3 text-sm ${isHero ? 'text-[#F7C8B9]' : 'text-[#8C4138]'}`}
           role="alert"
           data-testid="status-signup-error"
         >
@@ -98,6 +115,8 @@ function InterestForm() {
 }
 
 function Home() {
+  const [source] = useState(getSourceFromUrl);
+
   return (
     <>
       <script
@@ -106,59 +125,55 @@ function Home() {
         defer
       />
       <main className="min-h-[100dvh] overflow-hidden bg-[#F8F3EA] text-[#2B2620]">
-        <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-7 sm:px-10 sm:py-9 lg:px-16" data-testid="site-header">
-          <a
-            href="#pradzia"
-            className="font-serif text-xl tracking-[-0.02em] text-[#2B2620] transition-colors hover:text-[#B08D57]"
-            data-testid="link-wordmark"
-          >
-            Balso Būdelė
-          </a>
-          <span className="h-px w-16 bg-[#B08D57] sm:w-24" aria-hidden="true" />
-        </header>
+        <section id="pradzia" className="hero-shell relative isolate flex min-h-[100svh] flex-col overflow-hidden" aria-labelledby="hero-headline" data-testid="section-hero">
+          <img
+            src="/concept-placeholder.svg"
+            alt="Balso Būdelės konceptualus vaizdas"
+            className="hero-backdrop absolute inset-0 -z-20 h-full w-full object-cover"
+            data-testid="img-concept-placeholder"
+          />
+          <div className="hero-overlay absolute inset-0 -z-10" aria-hidden="true" />
+          <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-7 sm:px-10 sm:py-9 lg:px-16" data-testid="site-header">
+            <a
+              href="#pradzia"
+              className="font-serif text-xl tracking-[-0.02em] text-[#F8F3EA] transition-colors hover:text-[#B08D57]"
+              data-testid="link-wordmark"
+            >
+              Balso Būdelė
+            </a>
+            <span className="h-px w-16 bg-[#B08D57] sm:w-24" aria-hidden="true" />
+          </header>
 
-        <div id="pradzia" className="mx-auto w-full max-w-5xl px-6 sm:px-10 lg:px-16">
-          <section className="page-reveal pb-20 pt-20 sm:pb-28 sm:pt-28 lg:pb-36 lg:pt-36" aria-labelledby="hero-headline" data-testid="section-hero">
+          <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 items-end px-6 pb-10 pt-16 sm:items-center sm:px-10 sm:pb-20 lg:px-16 lg:pb-24">
             <div className="max-w-4xl">
-              <div className="mb-9 flex items-center gap-3 text-[#B08D57]" aria-hidden="true">
-                <span className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#B08D57]">
+              <div className="page-reveal mb-7 flex items-center gap-3 text-[#F8F3EA]" aria-hidden="true">
+                <span className="relative flex h-9 w-9 items-center justify-center rounded-full border border-[#F8F3EA]/75">
                   <Phone size={15} strokeWidth={1.25} />
                   <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-[#B08D57]" />
                 </span>
                 <span className="h-px w-14 bg-[#B08D57]" />
                 <Volume2 size={16} strokeWidth={1.25} />
               </div>
-              <h1 id="hero-headline" className="max-w-4xl font-serif text-[clamp(3.25rem,9vw,7.4rem)] leading-[0.96] tracking-[-0.055em] text-[#2B2620]">
+              <h1 id="hero-headline" className="page-reveal max-w-4xl font-serif text-[clamp(3.25rem,9vw,7.4rem)] leading-[0.96] tracking-[-0.055em] text-[#F8F3EA]">
                 Vieta, kur balsas tampa prisiminimu
               </h1>
-              <p className="page-reveal page-reveal-delay-1 mt-9 max-w-2xl text-lg leading-[1.55] text-[#6B6357] sm:text-xl">
+              <p className="page-reveal page-reveal-delay-1 mt-7 max-w-2xl text-lg leading-[1.5] text-[#F8F3EA]/85 sm:text-xl">
                 Nauja koncepcija vestuvėms – elegantiška telefono būdelė, kurioje svečiai palieka balso žinutę jaunavedžiams.
               </p>
+              <div className="page-reveal page-reveal-delay-2 mt-8">
+                <InterestForm source={source} variant="hero" />
+              </div>
             </div>
-            <a
-              href="#kas-tai"
-              className="page-reveal page-reveal-delay-2 mt-16 inline-flex items-center gap-3 text-xs font-medium tracking-[0.14em] text-[#6B6357] transition-colors hover:text-[#B08D57]"
-              data-testid="link-discover-concept"
-            >
-              <MoveDown size={15} strokeWidth={1.25} />
-              <span>Kas tai?</span>
-            </a>
-          </section>
+          </div>
+        </section>
 
-          <section className="page-reveal page-reveal-delay-2 pb-24 sm:pb-32" aria-labelledby="concept-title" data-testid="section-concept">
-            <figure className="relative overflow-hidden bg-[#D8C6AD]" data-testid="figure-concept">
-              <img
-                src="/concept-placeholder.svg"
-                alt="Balso Būdelės konceptualus vaizdas"
-                className="concept-placeholder block h-auto w-full object-cover mix-blend-multiply"
-                data-testid="img-concept-placeholder"
-              />
-              <span className="absolute bottom-5 left-5 flex items-center gap-2 text-[10px] tracking-[0.12em] text-[#F8F3EA]" aria-hidden="true">
-                <Mic2 size={13} strokeWidth={1.2} />
-                <span className="h-px w-8 bg-[#F8F3EA]" />
-              </span>
-            </figure>
-            <div className="border-b border-[#D8CDBE] py-16 sm:py-20">
+        <div className="mx-auto w-full max-w-5xl px-6 sm:px-10 lg:px-16">
+          <section id="kas-tai" className="page-reveal pb-24 pt-20 sm:pb-32 sm:pt-28" aria-labelledby="concept-title" data-testid="section-concept">
+            <div className="border-b border-[#D8CDBE] pb-16 sm:pb-20">
+              <div className="mb-9 flex items-center gap-2 text-[#B08D57]" aria-hidden="true">
+                <Mic2 size={15} strokeWidth={1.2} />
+                <span className="h-px w-8 bg-[#B08D57]" />
+              </div>
               <h2 id="concept-title" className="mb-9 font-serif text-3xl tracking-[-0.03em] sm:text-4xl">Kas tai?</h2>
               <div className="max-w-2xl divide-y divide-[#D8CDBE] text-lg leading-[1.55] text-[#6B6357]">
                 <p className="py-5 first:pt-0" data-testid="text-concept-line-1">Pilno dydžio, elegantiška telefono būdelė, pritaikyta vestuvių estetikai.</p>
@@ -174,7 +189,7 @@ function Home() {
               <p className="mb-9 max-w-xl text-lg leading-[1.55] text-[#6B6357]" data-testid="text-signup-body">
                 Šiuo metu tikriname susidomėjimą ir renkame nuomonę, prieš nuspręsdami dėl gamybos. Palikite el. paštą – pranešime, kai turėsime daugiau naujienų.
               </p>
-              <InterestForm />
+              <InterestForm source={source} />
             </div>
           </section>
         </div>
