@@ -145,8 +145,8 @@ function Home() {
             <span className="h-px w-16 bg-[#B08D57] sm:w-24" aria-hidden="true" />
           </header>
 
-          <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 items-end px-6 pb-10 pt-16 sm:items-center sm:px-10 sm:pb-20 lg:px-16 lg:pb-24">
-            <div className="hero-copy max-w-[24rem]">
+          <div className="absolute inset-0 z-10 mx-auto flex w-full max-w-5xl items-center px-6 sm:px-10 lg:px-16">
+            <div className="hero-copy pointer-events-auto max-w-[24rem]">
               <h1 id="hero-headline" className="page-reveal max-w-[12ch] font-serif text-[clamp(3.25rem,9vw,7.4rem)] leading-[0.96] tracking-[-0.055em] text-[#F8F3EA] lg:max-w-[10ch] lg:text-[clamp(4.5rem,5vw,4.75rem)]">
                 Vieta, kur balsas tampa prisiminimu
               </h1>
